@@ -17,3 +17,20 @@ A login does not have an URI and cannot be accessed via webfinger as a resource 
 The identity is the main actor in the network. It is the subject of most activities. It can be connected with other identities (via friendships or followships), it must be connected to at least one login. But it is important to know that an identity is not equal with a login. In fact an identity can be on a different server than the login that is using the identity.
 
 An identity is reachable via webfinger over the URI: `http://yourserver/identitiy/:id` .
+
+And it has the following properties: 
+
+	{
+		"public-key": "<base64encoded string of the public key>",
+		"private-key": "<base64encoded string of an AES-encoded private key",
+		"logins": [ //users to access this identity
+			{
+				"login": "Rasmus",
+				"server": "<domain or ip with optional port>",
+				"public-key": "<base64encoded string of the public key>"
+			},
+			...
+		],
+		"name": "<some name>",
+		"avatar": "<URL of a picture resource>"
+	}

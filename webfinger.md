@@ -13,9 +13,13 @@ When we say *identity*, we mean he item of the network.
 Now the response of webfinger is always a JSON-object and so it's well defined to be an UTF8-encoded string. It looks like this:
 
     {
-    	"subject": "URI adress of the entity (probably an identity)",
-    	"aliases": [],
-    	"properties": {},
-    	"links": []
+    	"subject": "URI adress of the entity, this is considered to be the ID",
+    	"aliases": [
+    		"<URI of this resource>",
+    		"<optional email-like identifier rasmus@blubber.it - for identities only>"
+    	],
+    	"properties": {...},
+    	"links": [...]
     }
 
+The properties of the item are class-specific, which means different entities have different properties.
