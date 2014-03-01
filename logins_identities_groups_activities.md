@@ -39,6 +39,7 @@ And it has the following properties:
 ### Logging in as a person
 
 As you see the identity has one private key that is AES-encrypted and each connected login has one attribute `encrypted-passphrase` which contains the passphrase to decrypt the private-key of the identity. So when a human person logs in, 
+
 1. he/she enters the loginname and password, 
 2. returns back the private key of the login (see there the ringpair), 
 3. the human person can now decrypt the private key of the login with a first passphrase the human person has to know.
