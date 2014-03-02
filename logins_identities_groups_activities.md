@@ -10,17 +10,26 @@ When you are a user as a human person and want to login to your server you need 
 
 In fact a login never does something in the network. A login without a connected identity is useless and cannot set any activities.
 
-A login does not have an URI and cannot be accessed via webfinger as a resource of the server. It is mostly used internally in the server and only the public keys are occasionally sent to other servers to connect to identities.
+A login can be accessed as a resource via webfinger with the [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/logins/:loginname`. Remember that this [IRI](http://tools.ietf.org/html/rfc3987) is not necessarily the URI for the login and the login does not even necessarily have an URI, which means having a real webadress. The IRI looks like a webadress but is only used for identifying the login.
+
+This is only done for inviting other logins to share an identity. So we only need to access the login-resource for the purpose of identitied which have multiple logins. This is how the properties of the resource look like.
+
+	{
+		"iri": "<the IRI of this login>",
+		"public-key": "<base64encoded string of the public key>",
+		"private-key": "<base64encoded string of an AES-encoded private key"
+		"loginname": "<loginname>"
+	}
+
 
 ## Identities
 
 The identity is the main actor in the network. It is the subject of most activities. It can be connected with other identities (via friendships or followships), it must be connected to at least one login. But it is important to know that an identity is not equal with a login. In fact an identity can be on a different server than the login that is using the identity.
 
-An identity is reachable via webfinger over the URI: `http://yourserver/identitiy/:id` .
-
-And it has the following properties: 
+An identity is reachable via webfinger with the following [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/identities/:id` or the email-like identifier `rasmus@yourserver.com`. And it has the following properties: 
 
 	{
+		"iri": "<the IRI of the identity>",
 		"public-key": "<base64encoded string of the public key>",
 		"private-key": "<base64encoded string of an AES-encoded private key",
 		"logins": [ //users to access this identity
@@ -49,4 +58,41 @@ As you see the identity has one private key that is AES-encrypted and each conne
 
 And voilà, the human person has now the raw private-key and can entirely act with the identities connected to the login.
 
-Now mind that the human person seems to need to enter a loginname and a password and a passphrase. This is designed to make end-to-end encryption possible. But in fact the server-software could also take care about the private-key of the login without letting the human person to even know about its existence. So you could implement the protocol by providing end-to-end encryption and not providing it. The protocol does not tell you which way you should implement it and it does not say which way is better. Both might be useful for different implementations. But this also means that if you are a human person and you want to use the BigNothing network for its easy end-to-end encryption you need to know how your contacts are using the network. It is as always: the network is only as safe as the implementation that is using the network.
+Now mind that the human person seems to need to enter a loginname and a password and a passphrase. This is designed to make end-to-end encryption possible. But in fact the server-software could also take care about the private-key of the login without letting the human person to even know about its existence. So you could implement the protocol by providing end-to-end encryption or by not providing it. The protocol does not tell you which way you should implement it and it does not say which way is better. Both might be useful for different implementations. But this also means that if you are a human person and you want to use the BigNothing network for its easy end-to-end encryption you need to know how your contacts are using the network. It is as always: the network is only as safe as the implementation and the users that are using the network. The goal of BigNothing is only to make it possible to use the network as safe as it can be. But it is not a must.
+
+## Groups
+
+Groups in BigNothing have some kind of a double meaning. At first they are used to define an audience for a posting. The posting is then only readable and writable by the audience. So the group is just a set of identities in the network. But a group can be extended so that it has more than one posting attached to it. Also it could have an avatar, a name and some other things that make a group look more like an entity in the network.
+
+Of course a group can be accessed via webfinger with the IRI [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/groups/:id`. And the properties are as followed:
+
+	{
+		"iri": "<the IRI of the group",
+		"public-key": "<base64encoded string of the public key>",
+		"private-key": "<base64encoded string of an AES-encoded private key",
+		"members": [ //an array of identities
+			{
+				"iri": "<iri of the identity>",
+				"public-key": "<base64encoded string of the public key of the identity>",
+				"encrypted-passphrase": "<AES passphrase to the private key encrypted for this member identity>",
+				"name": "Rasmus Fuhse",
+				"avatar": "<URL of an image as a webresource>"
+			},
+			...
+		],
+		"admins": [
+			"<IRI of a member",
+			...
+		],
+		"name": "Rasmus supergroup", //optional
+		"avatar": "<URL of an image resource>", //optional
+		"expand_audience": 1, //or 0 if not
+		"modules": [ ... ] //see later for description of modules in groups
+		....
+	}
+
+The group is probably the most complex entity in the network, because it is designed as a very flexible container for all kinds of sets of users with a special semantic or logic.
+
+But at the beginning we see that each group has again its own public and private key. All contents of the module MUST BE encrypted with the public key of the group and can only decrypted with the private key which is AES encrypted. An identity can decrypt the AES-passphrase with the private key of the identity and then decrypt the private key of the group. With this private key the identity can now decrypt all contents in the group, read the contents and of course write something in the group. But for writing to the context of the group only the private key of the identity is needed to sign the activity. But we discuss this later in detail.
+
+Whenever a member is leaving the group or has left the group the group needs to get a new ringpair, so that the old member cannot access the contents of the group anymore. This is a task that might take a lot of time. But luckily this should not happen so often. But for now it is important to know that the private and public key of the group can change. So you better beware when caching the keys in your browser or server implementation.
