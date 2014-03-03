@@ -104,3 +104,11 @@ There is also the possible "public" group that does not exist as an entitity in 
 ## Activities
 
 Whenever we have contents within a group or made by an identity, these contents are activities as described by [activitystrea.ms](http://activitystrea.ms/) JSON variant 2.0 . This means all contents MUST BE describable as activities with an identity as the author of the activity and this activity is the transport-format to send contents from one server to another.
+
+An activity is merely a triple of subject, verb and object. There are some extensions like an id, timestamps, a target and so on. All activities MUST HAVE a target and the most obvious target is a group (or even the virtual public group). Leaving the target away an activity can be described as a triple `(subject, verb, object)`. An activity could be editing a wiki-page or writing a posting, uploading a photo and so on. 
+
+Activities are just a flexible format for some kind of contents. It does not tell which activities are supported and which aren't. In fact all activity-types can be supported but there are a few types our network relies on.
+
+* **posting**: usage-triple is `(identity, "post", "posting")`. 
+* **following**: usage-triple is `(identity, "follow", identity)`.
+* **request membership**: usage-triple is `(identity, "requestmembership", group)`
