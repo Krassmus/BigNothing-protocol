@@ -95,4 +95,12 @@ The group is probably the most complex entity in the network, because it is desi
 
 But at the beginning we see that each group has again its own public and private key. All contents of the module MUST BE encrypted with the public key of the group and can only decrypted with the private key which is AES encrypted. An identity can decrypt the AES-passphrase with the private key of the identity and then decrypt the private key of the group. With this private key the identity can now decrypt all contents in the group, read the contents and of course write something in the group. But for writing to the context of the group only the private key of the identity is needed to sign the activity. But we discuss this later in detail.
 
-Whenever a member is leaving the group or has left the group the group needs to get a new ringpair, so that the old member cannot access the contents of the group anymore. This is a task that might take a lot of time. But luckily this should not happen so often. But for now it is important to know that the private and public key of the group can change. So you better beware when caching the keys in your browser or server implementation.
+Whenever a member is leaving the group or has left the group the group needs to get a new ringpair, so that the old member cannot access the (new) contents of the group anymore. This is a task that might take a lot of time. But luckily this should not happen so often. But for now it is important to know that the private and public key of the group can change. So you better beware when caching the keys in your browser or server implementation.
+
+### "Public"
+
+There is also the possible "public" group that does not exist as an entitity in the network and does not have any attributes. But it is the group public postings belong to. No notifications are sent to the members of this group. No modules exist here and there are no specific semantics attached to this group. The "public" group is just a virtual word for content that belongs to "everyone who is interested".
+
+## Activities
+
+Whenever we have contents within a group or made by an identity, these contents are activities as described by [activitystrea.ms](http://activitystrea.ms/) JSON variant 2.0 . This means all contents MUST BE describable as activities with an identity as the author of the activity and this activity is the transport-format to send contents from one server to another.
