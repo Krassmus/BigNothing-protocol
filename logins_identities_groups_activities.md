@@ -1,4 +1,4 @@
-# Logins, identities, groups and activities
+# 2. Logins, identities, groups and activities
 
 In BigNothing we suppose to have a very special scheme for items in our network. This scheme is fixed so that we can rely on other BigNothing-servers to have the same logic behind those entities.
 
@@ -116,3 +116,4 @@ Activities are just a flexible format for some kind of contents. It does not tel
 * **posting**: usage-triple is `(identity, "post", "posting")`. 
 * **following**: usage-triple is `(identity, "follow", identity)`.
 * **request membership**: usage-triple is `(identity, "requestmembership", group)`
+* **delegate identity**: usage-triple is `(identity, "delegate", login)`

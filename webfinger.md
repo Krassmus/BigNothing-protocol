@@ -1,4 +1,4 @@
-# Webfinger in BigNothing
+# 1. Webfinger in BigNothing
 
 In BigNothing we want to use the [webfinger protocol in its JSON-variant](http://tools.ietf.org/html/rfc7033) to provide information about ressources and end-points.
 
