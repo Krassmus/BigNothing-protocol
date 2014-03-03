@@ -4,6 +4,10 @@ In BigNothing we suppose to have a very special scheme for items in our network.
 
 To make it more precise a user in BigNothing is one entity, but a set of two classes of entities: one login and one or many identities. So we will try not to talk about users anyway, but of logins and identities.
 
+In an overview we want to discuss the following classes of entities:
+
+![logins_identities_groups_activities](https://raw.github.com/Krassmus/BigNothing-protocol/master/assets/logins_identities_groups_activities.svg)
+
 ## Logins
 
 When you are a user as a human person and want to login to your server you need a login. That is a combination of a loginname, a password and some RSA-ringpair. Your login doesn't have a name or a profile pic. This is due to your identity and we separate between the login and an identity to provide you the possibility to have more than one identitiy or to share an identity with some other human persons. For example an identity could be a company and many people (logins) have the right to speak as the company-account.
