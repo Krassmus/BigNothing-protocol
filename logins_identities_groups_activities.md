@@ -6,7 +6,7 @@ To make it more precise a user in BigNothing is one entity, but a set of two cla
 
 In an overview we want to discuss the following classes of entities:
 
-![logins_identities_groups_activities](https://raw.github.com/Krassmus/BigNothing-protocol/master/assets/logins_identities_groups_activities.svg)
+![logins_identities_groups_activities](https://raw.github.com/Krassmus/BigNothing-protocol/master/assets/logins_identities_groups_activities.png)
 
 ## Logins
 
