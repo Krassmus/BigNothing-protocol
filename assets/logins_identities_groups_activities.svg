@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="Neues Dokument 1">
+   sodipodi:docname="logins_identities_groups_activities.svg"
+   inkscape:export-filename="/Users/Krassmus/Documents/BigNothing-protocol/assets/logins_identities_groups_activities.png"
+   inkscape:export-xdpi="52.128712"
+   inkscape:export-ydpi="52.128712">
   <defs
      id="defs4">
     <inkscape:path-effect
@@ -40,7 +43,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.62"
+     inkscape:zoom="0.5"
      inkscape:cx="644.06614"
      inkscape:cy="225.65025"
      inkscape:document-units="px"
@@ -89,7 +92,8 @@
          sodipodi:role="line"
          id="tspan3757"
          x="51.677418"
-         y="260.36218">Login</tspan><tspan
+         y="260.36218"
+         style="font-weight:bold;-inkscape-font-specification:Sans Bold">Login</tspan><tspan
          sodipodi:role="line"
          x="51.677418"
          y="310.36218"
@@ -145,7 +149,8 @@ wIZ5XX3OzMzW5cXL85pbgA22t7f9/gPmHBhZSp3QBgAAAABJRU5ErkJggg==
          sodipodi:role="line"
          id="tspan3789"
          x="423.41934"
-         y="262.36188">Identity</tspan><tspan
+         y="262.36188"
+         style="font-weight:bold;-inkscape-font-specification:Sans Bold">Identity</tspan><tspan
          sodipodi:role="line"
          x="423.41934"
          y="312.36188"
@@ -213,7 +218,8 @@ AABJRU5ErkJggg==
          sodipodi:role="line"
          id="tspan3827"
          x="792"
-         y="262.10413">Groups</tspan><tspan
+         y="262.10413"
+         style="font-weight:bold;-inkscape-font-specification:Sans Bold">Group</tspan><tspan
          sodipodi:role="line"
          x="792"
          y="312.10413"
@@ -282,7 +288,8 @@ YBtjAAAAAElFTkSuQmCC
          sodipodi:role="line"
          id="tspan3871"
          x="1164.1935"
-         y="259.6525">Activities</tspan><tspan
+         y="259.6525"
+         style="font-weight:bold;-inkscape-font-specification:Sans Bold">Activity</tspan><tspan
          sodipodi:role="line"
          x="1164.1935"
          y="309.6525"
