@@ -113,19 +113,19 @@ Whenever we have contents within a group or made by an identity, these contents 
 An activity is merely a triple of subject, verb and object. There are some extensions like an id, timestamps, a target and so on. All activities MUST HAVE a target and the most obvious target is a group (or even the virtual public group). Leaving the target away an activity can be described as a triple `(subject, verb, object)`. An activity could be editing a wiki-page or writing a posting, uploading a photo and so on. 
 
 
-   {
-       "actor": "<IRI of an identity>",
-       "verb": "post",
-       "object": {
-           "objectType": "comment",
-           "id": "123751",
-           "iri": "http://mydomain/activities/123751",
-           "content": "bla bla bla",
-           "encrypted": 0 // or 1 if the content is encrypted
-       },
-       "published": "2011-02-10T15:04:55Z",
-       "target": "<IRI of an activity, because comments are always posted on activities>"
-   }
+    {
+        "actor": "<IRI of an identity>",
+        "verb": "post",
+        "object": {
+            "objectType": "comment",
+            "id": "123751",
+            "iri": "http://mydomain/activities/123751",
+            "content": "bla bla bla",
+            "encrypted": 0 // or 1 if the content is encrypted
+        },
+        "published": "2011-02-10T15:04:55Z",
+        "target": "<IRI of an activity, because comments are always posted on activities>"
+    }
 
 This is an activity of a comment. The target specifies which activity is commented. The actor is always identified by an IRI.
 The object is the most complex part. The ID is only relative ID on the server and probably only unique relative to the objectType. The IRI is defining a global unique identifier. The flag `encrypted` tells us if the content is an encrypted string. If it is encrypted it MUST BE encrypted with the public-key of a group, so only the members of the group can decrypt it.
@@ -134,25 +134,25 @@ Even in a closed group not all activities are necessarily encrypted. For perform
 
 There might also be more complex contentTypes with a content that is not a string but an object. In this case the `encrypted` flag MUST BE null or undefined. Some parts of the content might still be encrypted then. But this depends on the logic of the contentType and not on this protocol. Here is an example for this:
 
-   {
-       "actor": "<IRI of an identity>",
-       "verb": "create",
-       "object": {
-           "objectType": "familyTreeNode",
-           "id": "123751",
-           "iri": "http://mydomain/familytree/123/node/123751",
-           "content": {
-               "id": "123751",
-               "father_id": "<id of another node>",
-               "mother_id": "<id of another node>",
-               "name": "<encrypted string of the family-member>",
-               "name_encrypted": 1
-           },
-           "encrypted": null
-       },
-       "published": "2011-02-10T15:04:55Z"
-       "target": "http://mydomain/familytree/123"
-   }
+    {
+        "actor": "<IRI of an identity>",
+        "verb": "create",
+        "object": {
+            "objectType": "familyTreeNode",
+            "id": "123751",
+            "iri": "http://mydomain/familytree/123/node/123751",
+            "content": {
+                "id": "123751",
+                "father_id": "<id of another node>",
+                "mother_id": "<id of another node>",
+                "name": "<encrypted string of the family-member>",
+                "name_encrypted": 1
+            },
+            "encrypted": null
+        },
+        "published": "2011-02-10T15:04:55Z"
+        "target": "http://mydomain/familytree/123"
+    }
 
 So you see, it might be handsome to encrypt some data of the content and not other data.
 
