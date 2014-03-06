@@ -1,4 +1,4 @@
-# 3. Authentication and verifying
+# 4. Authentication and verifying
 
 For authentication we only have one simple mechanismus in BigNothing: asynchronous RSA. We use it for encryption of data to make sure that only the humans we want to see the contents are able to see it. And we use it for signing the data-package so that everyone can be sure that the content is coming from the correct identity.
 

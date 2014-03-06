@@ -1,4 +1,4 @@
-# 2. Logins, identities, groups and activities
+# 3. Logins, identities, groups and activities
 
 In BigNothing we suppose to have a very special scheme for items in our network. This scheme is fixed so that we can rely on other BigNothing-servers to have the same logic behind those entities.
 
@@ -14,7 +14,7 @@ When you are a user as a human person and want to login to your server you need 
 
 In fact a login never does something in the network. A login without a connected identity is useless and cannot set any activities.
 
-A login can be accessed as a resource via webfinger with the [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/logins/:loginname`. Remember that this [IRI](http://tools.ietf.org/html/rfc3987) is not necessarily the URI for the login and the login does not even necessarily have an URI, which means having a real webadress. The IRI looks like a webadress but is only used for identifying the login.
+A login can be accessed as a resource via webfinger with the [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/logins/:loginname`. Remember that this IRI is not necessarily the URI for the login and the login does not even necessarily have an URI, which means having a real webadress. The IRI looks like a webadress but is only used for identifying the login.
 
 This is only done for inviting other logins to share an identity. So we only need to access the login-resource for the purpose of identitied which have multiple logins. This is how the properties of the resource look like.
 
@@ -93,7 +93,6 @@ Of course a group can be accessed via webfinger with the IRI [IRI](http://tools.
 		"expand_audience": 1, //or 0 if not
 		"modules": [ ... ] //see later for description of modules in groups
 		....
-		"activity-endpoint": "<URL to which activities for this group should be POSTed>"
 	}
 
 The group is probably the most complex entity in the network, because it is designed as a very flexible container for all kinds of sets of users with a special semantic or logic.
@@ -110,8 +109,7 @@ There is also the possible "public" group that does not exist as an entitity in 
 
 Whenever we have contents within a group or made by an identity, these contents are activities as described by [activitystrea.ms](http://activitystrea.ms/) JSON variant 2.0 . This means all contents MUST BE describable as activities with an identity as the author of the activity and this activity is the transport-format to send contents from one server to another.
 
-An activity is merely a triple of subject, verb and object. There are some extensions like an id, timestamps, a target and so on. All activities MUST HAVE a target and the most obvious target is a group (or even the virtual public group). Leaving the target away an activity can be described as a triple `(subject, verb, object)`. An activity could be editing a wiki-page or writing a posting, uploading a photo and so on. 
-
+An activity is merely a triple of subject, verb and object. There are some extensions like an id, timestamps, a target and so on. All activities MUST HAVE a target and the most obvious target is a group (or even the virtual public group). The activity can be described as the triple `(subject, verb, object)`. An activity could be editing a wiki-page or writing a posting, uploading a photo and so on. 
 
     {
         "actor": "<IRI of an identity>",
@@ -121,14 +119,18 @@ An activity is merely a triple of subject, verb and object. There are some exten
             "id": "123751",
             "iri": "http://mydomain/activities/123751",
             "content": "bla bla bla",
+            "published": "2011-02-10T15:04:55Z",
             "encrypted": 0 // or 1 if the content is encrypted
         },
         "published": "2011-02-10T15:04:55Z",
-        "target": "<IRI of an activity, because comments are always posted on activities>"
+        "target": "<IRI of an activity, because comments are always posted on activities>",
+        "signature": "<the identity signed the JSON-string of the object here>"
     }
 
 This is an activity of a comment. The target specifies which activity is commented. The actor is always identified by an IRI.
-The object is the most complex part. The ID is only relative ID on the server and probably only unique relative to the objectType. The IRI is defining a global unique identifier. The flag `encrypted` tells us if the content is an encrypted string. If it is encrypted it MUST BE encrypted with the public-key of a group, so only the members of the group can decrypt it.
+The object is the most complex part. The ID is only a relative ID on the server and probably only uniquely relative to the objectType. The IRI is defining a global unique identifier. The flag `encrypted` tells us if the content is an encrypted string. If it is encrypted it MUST BE encrypted with the public-key of a group, so only the members of the group can decrypt it. The object MUST contain a flag `published` that is a timestamp for the creation of the object.
+
+The `signature` of the activity is important to make sure that the activity is really coming from the named identity. Because of this `signature` it is not important who is really sending the activity and this person or computer or API does not even log in to the server. The signature is the authentication that the activity is correct.
 
 Even in a closed group not all activities are necessarily encrypted. For performance reasons you may decide to encrypt only a few sensitive postings.
 
@@ -143,6 +145,7 @@ There might also be more complex contentTypes with a content that is not a strin
             "iri": "http://mydomain/familytree/123/node/123751",
             "content": {
                 "id": "123751",
+                "published": "2011-02-10T15:04:55Z",
                 "father_id": "<id of another node>",
                 "mother_id": "<id of another node>",
                 "name": "<encrypted string of the family-member>",
@@ -150,7 +153,7 @@ There might also be more complex contentTypes with a content that is not a strin
             },
             "encrypted": null
         },
-        "published": "2011-02-10T15:04:55Z"
+        "published": "2011-02-10T15:04:55Z",
         "target": "http://mydomain/familytree/123"
     }
 
