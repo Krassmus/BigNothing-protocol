@@ -1,6 +1,6 @@
 # 2. Server discovery
 
-The first resource accessable via webfinger is the server itself. It provides information about the server, access-endpoints-points and some statistics. The resource IRI is `http://yourserver/discovery` and the retrieved properties look like this:
+The first resource accessable via webfinger is the server itself. It provides information about the server, access-endpoints-points and some statistics. The resource IRI is `http://yourserver/bn.discovery` and the retrieved properties look like this:
 
 	{
 		"domain": "<the prefered domain or ip with port>",

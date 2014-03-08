@@ -14,7 +14,7 @@ When you are a user as a human person and want to login to your server you need 
 
 In fact a login never does something in the network. A login without a connected identity is useless and cannot set any activities.
 
-A login can be accessed as a resource via webfinger with the [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/logins/:loginname`. Remember that this IRI is not necessarily the URI for the login and the login does not even necessarily have an URI, which means having a real webadress. The IRI looks like a webadress but is only used for identifying the login.
+A login can be accessed as a resource via webfinger with the [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/bn.logins/:loginname`. Remember that this IRI is not necessarily the URI for the login and the login does not even necessarily have an URI, which means having a real webadress. The IRI looks like a webadress but is only used for identifying the login.
 
 This is only done for inviting other logins to share an identity. So we only need to access the login-resource for the purpose of identitied which have multiple logins. This is how the properties of the resource look like.
 
@@ -30,7 +30,7 @@ This is only done for inviting other logins to share an identity. So we only nee
 
 The identity is the main actor in the network. It is the subject of most activities. It can be connected with other identities (via friendships or followships), it must be connected to at least one login. But it is important to know that an identity is not equal with a login. In fact an identity can be on a different server than the login that is using the identity.
 
-An identity is reachable via webfinger with the following [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/identities/:id` or the email-like identifier `rasmus@yourserver.com`. And it has the following properties: 
+An identity is reachable via webfinger with the following [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/bn.identities/:id` or the email-like identifier `rasmus@yourserver.com`. And it has the following properties: 
 
 	{
 		"iri": "<the IRI of the identity>",
@@ -68,7 +68,7 @@ Now mind that the human person seems to need to enter a loginname and a password
 
 Groups in BigNothing have some kind of a double meaning. At first they are used to define an audience for a posting. The posting is then only readable and writable by the audience. So the group is just a set of identities in the network. But a group can be extended so that it has more than one posting attached to it. Also it could have an avatar, a name and some other things that make a group look more like an entity in the network.
 
-Of course a group can be accessed via webfinger with the IRI [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/groups/:id`. And the properties are as followed:
+Of course a group can be accessed via webfinger with the IRI [IRI](http://tools.ietf.org/html/rfc3987) `http://yourserver/bn.groups/:id`. And the properties are as followed:
 
 	{
 		"iri": "<the IRI of the group",
