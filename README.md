@@ -21,6 +21,7 @@ We are seeking a protocol for a federated or distributed social network that is 
 3. [Logins, identities, groups, activities](https://github.com/Krassmus/BigNothing-protocol/blob/master/logins_identities_groups_activities.md)
 4. [Authentication and verifying](https://github.com/Krassmus/BigNothing-protocol/blob/master/authentication.md)
 5. [Accessing HTTP-resources](https://github.com/Krassmus/BigNothing-protocol/blob/master/resources.md)
+6. [Modules and Add-Ons](https://github.com/Krassmus/BigNothing-protocol/blob/master/addons.md)
 
 ## License
 
