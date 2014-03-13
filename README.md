@@ -12,7 +12,7 @@ We are seeking a protocol for a federated or distributed social network that is 
 * Management of multiple identities per login.
 * Sharing one identity with multiple logins/persons.
 * Flexible data-format for flexible contents.
-* Handling groups with well a defined logic.
+* Handling groups with a well defined and flexible logic/semantic.
 
 ## Table of contents
 

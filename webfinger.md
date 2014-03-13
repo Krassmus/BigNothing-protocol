@@ -23,3 +23,5 @@ Now the response of webfinger is always a JSON-object and so it's well defined t
     }
 
 The properties of the item are class-specific, which means different entities have different properties.
+
+Remind that webfinger is a common specification that might be used by different protocols as well. When the BigNothing protocol relies on webfinger, it tries to use the prefix `bn.` for the identifiers. So the resources provided by webfinger for the BigNothing protocol should not collide with the resources of any other protocols.
